@@ -52,7 +52,9 @@ function tip(el, options) {
 function Tip(content, options) {
   if (!(this instanceof Tip)) return tip(content, options);
   Emitter.call(this);
+  options = options || {};
   this.classname = '';
+  this.pad = options.pad;
   this.el = o(require('./template'));
   this.inner = this.el.find('.tip-inner');
   Tip.prototype.message.call(this, content);
@@ -264,7 +266,7 @@ Tip.prototype.replaceClass = function(name){
  */
 
 Tip.prototype.offset = function(pos){
-  var pad = 15;
+  var pad = this.pad || 15;
   var el = this.el;
   var target = this.target;
 
